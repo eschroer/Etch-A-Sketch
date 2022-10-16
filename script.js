@@ -7,10 +7,12 @@ let currentSize = DEFAULT_SIZE;
 const container = document.querySelector(".container");
 const resetButton = document.querySelector(".reset");
 const colorPicker = document.querySelector(".color");
+const randomButton = document.querySelector(".random")
 const gridSizeSlider = document.querySelector(".size");
 
 resetButton.addEventListener("click", clearGrid);
 colorPicker.addEventListener("input", changeColor);
+randomButton.addEventListener("click", activateRandomMode)
 gridSizeSlider.addEventListener("change", changeGridSize);
 gridSizeSlider.addEventListener("mousemove", changeGridSizeValue);
 
@@ -29,6 +31,11 @@ function colorPixel(event){
 }
 function changeColor(event){
     currentColor = event.target.value;
+}
+function activateRandomMode(){
+    const randomColor = '#'+(Math.random().toString(16)+'00000').slice(2,8)
+    currentColor = randomColor
+    console.log(currentColor)
 }
 
 function clearGrid(){
