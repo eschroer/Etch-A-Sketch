@@ -13,6 +13,8 @@ h1{
     grid-template-rows: repeat(16, 1fr);
     height: 400px;
     width: 400px;
+    border: solid 1px #333333;
+    margin: 20px;
 }
 .pixel {
     background-color: rgb(219, 223, 223, 10);
