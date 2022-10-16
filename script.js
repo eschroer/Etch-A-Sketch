@@ -7,35 +7,53 @@ let currentSize = DEFAULT_SIZE;
 const container = document.querySelector(".container");
 const resetButton = document.querySelector(".reset");
 const colorPicker = document.querySelector(".color");
-const randomButton = document.querySelector(".random")
+const randomButton = document.querySelector(".random");
+const rainbowButton = document.querySelector(".rainbow");
 const gridSizeSlider = document.querySelector(".size");
 
 resetButton.addEventListener("click", clearGrid);
 colorPicker.addEventListener("input", changeColor);
-randomButton.addEventListener("click", activateRandomMode)
+randomButton.addEventListener("click", generateRandomColor);
+rainbowButton.addEventListener("click", activateRainbowMode);
 gridSizeSlider.addEventListener("change", changeGridSize);
 gridSizeSlider.addEventListener("mousemove", changeGridSizeValue);
 
 function createGrid(size) {
+    container.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+    container.style.gridTemplateRows = `repeat(${size}, 1fr)`;
+
     for (let i = 0; i<(size * size); i++) {
         const pixel = document.createElement("div");
         pixel.classList.add("pixel");
         container.appendChild(pixel);
-        pixel.addEventListener("mouseover", colorPixel);
-        container.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
-        container.style.gridTemplateRows = `repeat(${size}, 1fr)`;
+        pixel.addEventListener("mouseover", colorPixel); 
     } 
 }
 function colorPixel(event){
     event.target.style.backgroundColor = currentColor;
 }
 function changeColor(event){
+    const pixels = document.querySelectorAll(".pixel");
+    pixels.forEach(function(item){
+        item.addEventListener("mouseover", function(){
+            currentColor = event.target.value;
+        })
+    })
     currentColor = event.target.value;
 }
-function activateRandomMode(){
+function generateRandomColor(){
     const randomColor = '#'+(Math.random().toString(16)+'00000').slice(2,8)
     currentColor = randomColor
-    console.log(currentColor)
+    return currentColor
+}
+
+function activateRainbowMode() {
+    const pixels = document.querySelectorAll(".pixel");
+    pixels.forEach(function(item){
+        item.addEventListener("mouseover", function(){
+            currentColor = generateRandomColor();
+        })
+    })
 }
 
 function clearGrid(){
