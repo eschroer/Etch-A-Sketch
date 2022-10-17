@@ -3,6 +3,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    font-family: "Roboto", sans-serif;
 }
 h1{
     text-align: center;
@@ -18,4 +19,15 @@ h1{
 }
 .pixel {
     background-color: rgb(219, 223, 223, 10);
+}
+button {
+    margin: 4px;
+    padding: 8px;
+    border: none;
+}
+.color {
+    border: none;
+}
+input {
+    margin: 4px;
 }

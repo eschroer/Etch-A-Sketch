@@ -13,7 +13,7 @@ const gridSizeSlider = document.querySelector(".size");
 
 resetButton.addEventListener("click", clearGrid);
 colorPicker.addEventListener("input", changeColor);
-randomButton.addEventListener("click", generateRandomColor);
+randomButton.addEventListener("click", activateRandomMode);
 rainbowButton.addEventListener("click", activateRainbowMode);
 gridSizeSlider.addEventListener("change", changeGridSize);
 gridSizeSlider.addEventListener("mousemove", changeGridSizeValue);
@@ -52,6 +52,15 @@ function activateRainbowMode() {
     pixels.forEach(function(item){
         item.addEventListener("mouseover", function(){
             currentColor = generateRandomColor();
+        })
+    })
+}
+function activateRandomMode() {
+    const randomColor = generateRandomColor();
+    const pixels = document.querySelectorAll(".pixel");
+    pixels.forEach(function(item){
+        item.addEventListener("mouseover", function(){
+            currentColor = randomColor;
         })
     })
 }
